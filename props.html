@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Props</title>
+  </head>
+
+  <body>
+    <div id="root"></div>
+  </body>
+  <script src="https://unpkg.com/react@17.0.2/umd/react.production.min.js"></script>
+  <script src="https://unpkg.com/react-dom@17.0.2/umd/react-dom.production.min.js"></script>
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+  <script type="text/babel">
+    const Btn = ({banana,onClick1}) =>{
+      return(
+        <>
+          <button onClick={onClick1} style = {{
+            border: 0,
+            borderRadius: 10,
+            fontSize:"24px",
+            color:"white",
+            backgroundColor:"tomato",
+            padding: "10px 20px",
+            marginTop:"30px",
+            display:"block",
+            cursor:"pointer"
+            
+          }}>{banana }</button>
+        </> 
+      )
+    }
+    function App() {
+      const [value, setValue] = React.useState("save change")
+      const changeValue  = () => setValue(value = "revert Change" ? "save change" : "revert Change");
+      return (
+        <>
+         <Btn banana={value} onClick1={changeValue}/>
+         <Btn banana="confirm"/>  
+        </>
+      );
+    }
+    const root = document.getElementById("root");
+    ReactDOM.render(<App />, root);
+  </script>
+</html>

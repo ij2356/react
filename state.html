@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>React Basic</title>
+  </head>
+
+  <body>
+    <div id="root"></div>
+  </body>
+  <script src="https://unpkg.com/react@17.0.2/umd/react.production.min.js"></script>
+  <script src="https://unpkg.com/react-dom@17.0.2/umd/react-dom.production.min.js"></script>
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+  <script type="text/babel">
+    function Section1() {
+      const [sec, setSec] = React.useState();
+      const [boolean, setBoolean] = React.useState(true);
+      const changemin = (e) => {
+        setSec(e.target.value);
+      };
+      const setbool = () => {
+        setBoolean(current => !current)
+      }
+      return (
+        <>
+          <div className="section1">
+            <input
+              onChange={changemin}
+              type="number"
+              placeholder="초"
+              name=""
+              id=""
+              disabled={!boolean}
+              value={!boolean ?  (sec * 60).toFixed(1) : sec} 
+            />
+            <input
+              onChange={changemin}
+              type="number"
+              placeholder="분"
+              name=""
+              id=""
+              disabled={boolean}
+              value={boolean ?  (sec / 60).toFixed(1) : sec} 
+            />
+          </div>
+          <button onClick = {setbool}>fliped</button>
+        </>
+      );
+    }
+
+    function Section2() {
+      return (
+        <select name="" id="">
+          <option value="">sec2: 2</option>
+          <option value="">13</option>
+          <option value="">15</option>
+        </select>
+      );
+    }
+
+    function Section3() {
+      return (
+        <select name="" id="">
+          <option value="">sec3 :12</option>
+          <option value="">13</option>
+          <option value="">15</option>
+        </select>
+      );
+    }
+
+    function App() {
+      const [index, setindex] = React.useState("-1");
+      function onChangeSelect(e) {
+        setindex(() => event.target.value);
+      }
+      const test = () => console.log(index);
+      return (
+        <>
+          <h1>Super Converter</h1>
+          <select name="" id="select" onChange={onChangeSelect}>
+            <option value="-1">Select Unit</option>
+            <option value="0">Minutes & Hours</option>
+            <option value="1">Km & M</option>
+          </select>
+          <button onClick={test}>테스트버튼</button>
+          <hr />
+          {index == "-1" ? null : index == "0" ? <Section1 /> : <Section2 />}
+        </>
+      );
+    }
+    const root = document.getElementById("root");
+    ReactDOM.render(<App />, root);
+  </script>
+</html>
