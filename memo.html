@@ -14,9 +14,11 @@
   <script type="text/babel">
     const root = document.getElementById("root");
 
-    function Btn({ buttonName }) {
+    function Btn({ buttonName, changeName }) {
+      console.log(buttonName, "redered");
       return (
         <button
+          onClick={changeName}
           style={{
             backgroundColor: "teal",
             color: "white",
@@ -30,12 +32,14 @@
         </button>
       );
     }
-
+    const MemorizedBtn = React.memo(Btn);
     const App = () => {
+      const [name, setName] = React.useState("Save Changes");
+      const changeName = () => setName("Revert Changes");
       return (
         <div>
-          <Btn buttonName={"Save Changes"} />
-          <Btn buttonName={"Confirm"} />
+          <MemorizedBtn buttonName={name} changeName={changeName} />
+          <MemorizedBtn buttonName={"Confirm"} />
         </div>
       );
     };
