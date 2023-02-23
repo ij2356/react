@@ -1,4 +1,4 @@
-window.onload = function () {
+
 	class UserStorage{
 		loginUser(id, password, onSuccess, onError) {
 			setTimeout(() => {
@@ -14,7 +14,7 @@ window.onload = function () {
 		getRoles(user, onSuccess, onError) {
 			setTimeout(() => {
 				if (user === 'superAdmin') {
-					onSuccess(user : 'superAdmin', role : 'admin');
+					onSuccess({ name: "superAdmin", role: "admin" });
 				}
 				else {
 					onError(new Error("no Acess"))
@@ -33,5 +33,4 @@ window.onload = function () {
 		userStorge.getRoles 
 	})
 	
-	//load end
-};
+
